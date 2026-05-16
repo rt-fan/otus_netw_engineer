@@ -23,7 +23,11 @@
 - **Лабытнанги:** `192.168.27.0/24`
 - **Чокурдах:** `192.168.28.0/24`
 
-![[image.png]]
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="YOUR-DARKMODE-IMAGE">
+ <source media="(prefers-color-scheme: light)" srcset="YOUR-LIGHTMODE-IMAGE">
+ <img src="image.png">
+</picture>
 
 ### Таблица IP-адресации
 
