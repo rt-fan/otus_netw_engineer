@@ -24,8 +24,6 @@
 - **Чокурдах:** `192.168.28.0/24`
 
 <picture>
- <source media="(prefers-color-scheme: dark)" srcset="YOUR-DARKMODE-IMAGE">
- <source media="(prefers-color-scheme: light)" srcset="YOUR-LIGHTMODE-IMAGE">
  <img src="image.png">
 </picture>
 
