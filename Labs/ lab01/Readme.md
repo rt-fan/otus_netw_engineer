@@ -208,6 +208,9 @@ interface Ethernet0/2
 ip route 10.100.0.0 255.255.0.0 10.100.254.5
 ip route 172.16.101.0 255.255.255.0 172.16.101.9
 ip route 10.52.0.0 255.255.0.0 172.16.30.5
+!
+end
+write
 ```
 
 ##### Настройка для R22
@@ -235,6 +238,9 @@ interface Ethernet0/2
 ip route 10.100.0.0 255.255.0.0 10.100.254.1
 ip route 172.16.30.0 255.255.255.0 172.16.101.10
 ip route 10.52.0.0 255.255.0.0 172.16.101.6
+!
+end
+write
 ```
 
 
@@ -621,6 +627,7 @@ interface range Ethernet1/0-1
 interface Vlan99
  ip address 10.100.99.4 255.255.255.0
  no shutdown
+!
 ip default-gateway 10.100.99.12
 !
 end
@@ -664,6 +671,7 @@ interface range Ethernet1/0-1
 interface Vlan99
  ip address 10.100.99.5 255.255.255.0
  no shutdown
+!
 ip default-gateway 10.100.99.13
 !
 end
@@ -693,6 +701,7 @@ interface Ethernet0/2
 interface Vlan99
  ip address 10.100.99.3 255.255.255.0
  no shutdown
+!
 ip default-gateway 10.100.99.12
 !
 end
@@ -722,6 +731,7 @@ interface Ethernet0/2
 interface Vlan99
  ip address 10.100.99.2 255.255.255.0
  no shutdown
+!
 ip default-gateway 10.100.99.13
 end
 write
@@ -730,10 +740,6 @@ write
 ##### VPC1
 
 ```
-IP: 10.100.10.10
-Mask: 255.255.255.0
-Gateway: 10.100.10.1
-
 set pcname VPC1
 ip 10.100.10.10 255.255.255.0 10.100.10.1
 save
@@ -742,10 +748,6 @@ save
 ##### VPC7
 
 ```
-IP: 10.100.20.10
-Mask: 255.255.255.0
-Gateway: 10.100.20.1
-
 set pcname VPC1
 ip 10.100.20.10 255.255.255.0 10.100.20.1
 save
@@ -1068,11 +1070,8 @@ interface Ethernet0/2.30
  ip address 10.3.30.1 255.255.255.0
 !
 ip route 0.0.0.0 0.0.0.0 10.52.250.9
-!
-! Если нужно, чтобы из Москвы видели Чокурдах, добавьте статику на R25/R26:
-! (Это настраивается на R25/R26, но для понимания:)
-! ip route 10.3.30.0 255.255.255.0 10.52.250.10
-! ip route 10.3.31.0 255.255.255.0 10.52.250.10
+ip route 10.3.30.0 255.255.255.0 10.52.250.10
+ip route 10.3.31.0 255.255.255.0 10.52.250.10
 !
 end
 write memory
