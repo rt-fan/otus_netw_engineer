@@ -24,7 +24,7 @@
 - **Чокурдах:** `192.168.28.0/24`
 
 <picture>
- <img src="image.png">
+ <img src="image2.png">
 </picture>
 
 ### Таблица IP-адресации
