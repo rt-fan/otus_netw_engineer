@@ -28,12 +28,12 @@
 
 Loopback'и:
 
-| Router | Loopback       |
-| ------ | -------------- |
-| R23    | 10.23.23.23/32 |
-| R24    | 10.24.24.24/32 |
-| R25    | 10.25.25.25/32 |
-| R26    | 10.26.26.26/32 |
+| Router | Loopback      |
+| ------ | ------------- |
+| R23    | 10.52.0.23/32 |
+| R24    | 10.52.0.24/32 |
+| R25    | 10.52.0.25/32 |
+| R26    | 10.52.0.26/32 |
 
 <picture>
  <img src="image.png">
@@ -45,7 +45,7 @@ Loopback'и:
 
 ```
 interface Loopback0
- ip address 10.23.23.23 255.255.255.255
+ ip address 10.52.0.23 255.255.255.255
  ipv6 address 2001:db8:23::23/128
  ip router isis TRIADA
  ipv6 router isis TRIADA
@@ -83,7 +83,7 @@ router isis TRIADA
 
 ```
 interface Loopback0
- ip address 10.24.24.24 255.255.255.255
+ ip address 10.52.0.24 255.255.255.255
  ipv6 address 2001:db8:24::24/128
  ip router isis TRIADA
  ipv6 router isis TRIADA
@@ -126,7 +126,7 @@ router isis TRIADA
 
 ```
 interface Loopback0
- ip address 10.25.25.25 255.255.255.255
+ ip address 10.52.0.25 255.255.255.255
  ipv6 address 2001:db8:25::25/128
  ip router isis TRIADA
  ipv6 router isis TRIADA
@@ -169,7 +169,7 @@ router isis TRIADA
 
 ```
 interface Loopback0
- ip address 10.26.26.26 255.255.255.255
+ ip address 10.52.0.26 255.255.255.255
  ipv6 address 2001:db8:26::26/128
  ip router isis TRIADA
  ipv6 router isis TRIADA
