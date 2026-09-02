@@ -37,80 +37,90 @@ Loopback'и:
 #### R18
 
 ```
+ipv6 cef
 ipv6 unicast-routing
-
+!
 interface Ethernet0/0
+descr R16
  ip address 10.20.42.5 255.255.255.252
- ipv6 address 2001:DB8:20:42:4::1/64
+ ipv6 address 2001:DB8:42:4::1/64
  no shutdown
-
+!
 interface Ethernet0/1
+descr R17
  ip address 10.20.42.1 255.255.255.252
- ipv6 address 2001:DB8:20:42:0::1/64
+ ipv6 address 2001:DB8:42:0::1/64
  no shutdown
-
-interface Ethernet0/2
- ip address 10.52.200.6 255.255.255.252
- ipv6 address 2001:DB8:52:200::2/64
- no shutdown
-
-interface Ethernet0/3
- ip address 10.52.250.14 255.255.255.252
- ipv6 address 2001:DB8:52:250::2/64
- no shutdown
-
+!
 interface Loopback0
  ip address 10.20.42.18 255.255.255.255
- ipv6 address 2001:DB8:20:42::18/128
-
+ ipv6 address 2001:DB8:100::18/128
+!
+ip route 0.0.0.0 0.0.0.0 10.52.200.5
+ip route 0.0.0.0 0.0.0.0 10.52.250.13 10
+!
+ipv6 route ::/0 2001:DB8:52:200::1
+ipv6 route ::/0 2001:DB8:52:250::1 10
+!
 router eigrp SPB
- !
+!
  address-family ipv4 unicast autonomous-system 100
-  topology base
-
+  eigrp router-id 10.20.42.18
   network 10.20.42.0 0.0.0.255
   network 10.52.200.4 0.0.0.3
   network 10.52.250.12 0.0.0.3
-
+  !       
   af-interface default
+   passive-interface
+  exit-af-interface
+  !
+  af-interface Ethernet0/0
    no passive-interface
   exit-af-interface
- exit-address-family
-
- !
- address-family ipv6 unicast autonomous-system 100
-  topology base
-
-  af-interface default
-   no shutdown
-  exit-af-interface
-
-  af-interface Ethernet0/0
-  exit-af-interface
+  !
   af-interface Ethernet0/1
+   no passive-interface
   exit-af-interface
+  !
   af-interface Ethernet0/2
+   no passive-interface
   exit-af-interface
+  !
   af-interface Ethernet0/3
+   no passive-interface
   exit-af-interface
+  !
   af-interface Loopback0
+   no passive-interface
   exit-af-interface
+!
+ address-family ipv6 unicast autonomous-system 100
+  eigrp router-id 10.20.42.18
+!
+  af-interface default
+   passive-interface
+  exit-af-interface
+  !
+  af-interface Ethernet0/0
+   no passive-interface
+  exit-af-interface
+  !
+  af-interface Ethernet0/1
+   no passive-interface
+  exit-af-interface
+  !       
+  af-interface Ethernet0/2
+   no passive-interface
+  exit-af-interface
+  !
+  af-interface Ethernet0/3
+   no passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+  eigrp router-id 10.20.42.18
  exit-address-family
-
-interface Ethernet0/0
- ipv6 eigrp 100
-
-interface Ethernet0/1
- ipv6 eigrp 100
-
-interface Ethernet0/2
- ipv6 eigrp 100
-
-interface Ethernet0/3
- ipv6 eigrp 100
-
-interface Loopback0
- ipv6 eigrp 100
 ```
 
 #### R16
