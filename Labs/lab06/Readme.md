@@ -15,7 +15,7 @@
 
 <img width="1246" height="642" alt="Pasted image 20261011003951" src="https://github.com/user-attachments/assets/64e77991-1505-48e7-bc94-33efd31a4f08" />
 
-## Адресация BGP-сосоедств
+## Адресация BGP-соседств
 
 | Роутер | AS   | BGP-сосед | AS соседа | IP соседа     |
 | ------ | ---- | --------- | --------- | ------------- |
