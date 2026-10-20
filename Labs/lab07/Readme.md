@@ -451,7 +451,7 @@ BGP activity 12/1 prefixes, 20/2 paths, scan interval 60 secs
 Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
 10.52.200.5     4          520    7630    7641       26    0    0 4d19h           7
 10.52.250.13    4          520    7624    7627       26    0    0 4d19h           7
-R18#
+
 R18#show ip bgp
 BGP table version is 26, local router ID is 10.20.42.18
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
@@ -475,7 +475,7 @@ RPKI validation codes: V valid, I invalid, N Not found
  *>                   10.52.200.5                            0 520 301 1001 i
  *m  10.100.1.28/30   10.52.250.13                           0 520 101 1001 i
  *>                   10.52.200.5                            0 520 301 1001 i
-          
+
 R18#show ip route bgp
 Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
@@ -499,7 +499,7 @@ B        10.100.1.8/30 [20/0] via 10.52.250.13, 00:01:37
 B        10.100.1.24/30 [20/0] via 10.52.250.13, 00:01:37
                         [20/0] via 10.52.200.5, 00:01:37
 B        10.100.1.28/30 [20/0] via 10.52.250.13, 00:01:37
-          
+
 R18#show ip route 10.100.254.0
 Routing entry for 10.100.254.0/30
   Known via "bgp 2042", distance 20, metric 0
@@ -516,7 +516,7 @@ Routing entry for 10.100.254.0/30
       AS Hops 3
       Route tag 520
       MPLS label: none
-R18#
+
 R18#show ip cef
 Prefix               Next Hop             Interface
 0.0.0.0/0            10.52.200.5          Ethernet0/2
@@ -540,7 +540,6 @@ Prefix               Next Hop             Interface
 10.20.42.18/32       receive              Loopback0
 10.52.200.4/30       attached             Ethernet0/2
 10.52.200.4/32       receive              Ethernet0/2
-Prefix               Next Hop             Interface
 10.52.200.5/32       attached             Ethernet0/2
 10.52.200.6/32       receive              Ethernet0/2
 10.52.200.7/32       receive              Ethernet0/2
