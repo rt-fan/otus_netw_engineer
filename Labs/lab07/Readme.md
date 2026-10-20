@@ -437,9 +437,10 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/3 ms
 ```
 R18#show ip bgp summary
 BGP router identifier 10.20.42.18, local AS number 2042
-BGP table version is 15, main routing table version 15
+BGP table version is 26, main routing table version 26
 11 network entries using 1540 bytes of memory
 18 path entries using 1440 bytes of memory
+7 multipath network entries and 14 multipath paths
 3/2 BGP path/bestpath attribute entries using 432 bytes of memory
 2 BGP AS-PATH entries using 48 bytes of memory
 0 BGP route-map cache entries using 0 bytes of memory
@@ -448,11 +449,11 @@ BGP using 3460 total bytes of memory
 BGP activity 12/1 prefixes, 20/2 paths, scan interval 60 secs
 
 Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-10.52.200.5     4          520    7615    7625       15    0    0 4d19h           7
-10.52.250.13    4          520    7608    7611       15    0    0 4d19h           7
-
+10.52.200.5     4          520    7630    7641       26    0    0 4d19h           7
+10.52.250.13    4          520    7624    7627       26    0    0 4d19h           7
+R18#
 R18#show ip bgp
-BGP table version is 15, local router ID is 10.20.42.18
+BGP table version is 26, local router ID is 10.20.42.18
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
               r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
               x best-external, a additional-path, c RIB-compressed, 
@@ -464,17 +465,17 @@ RPKI validation codes: V valid, I invalid, N Not found
  *>  10.20.42.4/30    0.0.0.0                  0         32768 i
  *>  10.52.200.4/30   0.0.0.0                  0         32768 i
  *>  10.52.250.12/30  0.0.0.0                  0         32768 i
- *   10.100.1.0/30    10.52.250.13                           0 520 101 1001 i
+ *m  10.100.1.0/30    10.52.250.13                           0 520 101 1001 i
  *>                   10.52.200.5                            0 520 301 1001 i
- *   10.100.1.4/30    10.52.250.13                           0 520 101 1001 i
+ *m  10.100.1.4/30    10.52.250.13                           0 520 101 1001 i
  *>                   10.52.200.5                            0 520 301 1001 i
- *   10.100.1.8/30    10.52.250.13                           0 520 101 1001 i
+ *m  10.100.1.8/30    10.52.250.13                           0 520 101 1001 i
  *>                   10.52.200.5                            0 520 301 1001 i
- *   10.100.1.24/30   10.52.250.13                           0 520 101 1001 i
+ *m  10.100.1.24/30   10.52.250.13                           0 520 101 1001 i
  *>                   10.52.200.5                            0 520 301 1001 i
- *   10.100.1.28/30   10.52.250.13                           0 520 101 1001 i
+ *m  10.100.1.28/30   10.52.250.13                           0 520 101 1001 i
  *>                   10.52.200.5                            0 520 301 1001 i
-
+          
 R18#show ip route bgp
 Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
@@ -489,27 +490,34 @@ Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
 Gateway of last resort is 10.52.200.5 to network 0.0.0.0
 
       10.0.0.0/8 is variably subnetted, 20 subnets, 2 masks
-B        10.100.1.0/30 [20/0] via 10.52.200.5, 4d19h
-B        10.100.1.4/30 [20/0] via 10.52.200.5, 4d19h
-B        10.100.1.8/30 [20/0] via 10.52.200.5, 4d19h
-B        10.100.1.24/30 [20/0] via 10.52.200.5, 4d19h
-B        10.100.1.28/30 [20/0] via 10.52.200.5, 4d19h
-B        10.100.254.0/30 [20/0] via 10.52.200.5, 4d19h
-B        10.100.254.4/30 [20/0] via 10.52.200.5, 4d19h
-
+B        10.100.1.0/30 [20/0] via 10.52.250.13, 00:01:37
+                       [20/0] via 10.52.200.5, 00:01:37
+B        10.100.1.4/30 [20/0] via 10.52.250.13, 00:01:37
+                       [20/0] via 10.52.200.5, 00:01:37
+B        10.100.1.8/30 [20/0] via 10.52.250.13, 00:01:37
+                       [20/0] via 10.52.200.5, 00:01:37
+B        10.100.1.24/30 [20/0] via 10.52.250.13, 00:01:37
+                        [20/0] via 10.52.200.5, 00:01:37
+B        10.100.1.28/30 [20/0] via 10.52.250.13, 00:01:37
+          
 R18#show ip route 10.100.254.0
 Routing entry for 10.100.254.0/30
   Known via "bgp 2042", distance 20, metric 0
   Tag 520, type external
-  Last update from 10.52.200.5 4d19h ago
+  Last update from 10.52.200.5 00:01:37 ago
   Routing Descriptor Blocks:
-  * 10.52.200.5, from 10.52.200.5, 4d19h ago
+  * 10.52.250.13, from 10.52.250.13, 00:01:37 ago
       Route metric is 0, traffic share count is 1
       AS Hops 3
       Route tag 520
       MPLS label: none
-
-R18#show ip cef 
+    10.52.200.5, from 10.52.200.5, 00:01:37 ago
+      Route metric is 0, traffic share count is 1
+      AS Hops 3
+      Route tag 520
+      MPLS label: none
+R18#
+R18#show ip cef
 Prefix               Next Hop             Interface
 0.0.0.0/0            10.52.200.5          Ethernet0/2
 0.0.0.0/8            drop
@@ -532,9 +540,9 @@ Prefix               Next Hop             Interface
 10.20.42.18/32       receive              Loopback0
 10.52.200.4/30       attached             Ethernet0/2
 10.52.200.4/32       receive              Ethernet0/2
+Prefix               Next Hop             Interface
 10.52.200.5/32       attached             Ethernet0/2
 10.52.200.6/32       receive              Ethernet0/2
-Prefix               Next Hop             Interface
 10.52.200.7/32       receive              Ethernet0/2
 10.52.250.12/30      attached             Ethernet0/3
 10.52.250.12/32      receive              Ethernet0/3
@@ -542,17 +550,25 @@ Prefix               Next Hop             Interface
 10.52.250.14/32      receive              Ethernet0/3
 10.52.250.15/32      receive              Ethernet0/3
 10.100.1.0/30        10.52.200.5          Ethernet0/2
+                     10.52.250.13         Ethernet0/3
 10.100.1.4/30        10.52.200.5          Ethernet0/2
+                     10.52.250.13         Ethernet0/3
 10.100.1.8/30        10.52.200.5          Ethernet0/2
+                     10.52.250.13         Ethernet0/3
 10.100.1.24/30       10.52.200.5          Ethernet0/2
+                     10.52.250.13         Ethernet0/3
 10.100.1.28/30       10.52.200.5          Ethernet0/2
+                     10.52.250.13         Ethernet0/3
 10.100.254.0/30      10.52.200.5          Ethernet0/2
+                     10.52.250.13         Ethernet0/3
 10.100.254.4/30      10.52.200.5          Ethernet0/2
+                     10.52.250.13         Ethernet0/3
+Prefix               Next Hop             Interface
 127.0.0.0/8          drop
 224.0.0.0/4          drop
 224.0.0.0/24         receive              
 240.0.0.0/4          drop
-255.255.255.255/32   receive   
+255.255.255.255/32   receive
 
 R18#ping 10.52.200.5
 Type escape sequence to abort.
