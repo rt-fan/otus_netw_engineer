@@ -12,7 +12,7 @@
 4. Настроить офиса С.-Петербург так, чтобы трафик до любого офиса распределялся по двум линкам одновременно.
 5. Все сети в лабораторной работе должны иметь IP связность.
 
-<img width="1246" height="642" alt="Pasted image 20261011003951" src="https://github.com/user-attachments/assets/b86c6461-7692-4e6b-b50d-cd93b31ed91c" />
+<img width="1246" height="642" alt="Pasted image 20261011003951" src="https://github.com/user-attachments/assets/64e77991-1505-48e7-bc94-33efd31a4f08" />
 
 ## Настройка маршрутизаторов
 
